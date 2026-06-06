@@ -20,7 +20,7 @@ def rank_resumes(job_description, resumes):
 
         ranked_candidates.append({
             "candidate": candidate_name,
-            "score": round(score*100, 2)
+            "score": round(float(score*100),2)
         })
 
     ranked_candidates.sort(

@@ -1,4 +1,6 @@
 from fastapi import FastAPI
+from models import RankingRequest
+from ranking import rank_resumes
 
 app = FastAPI()
 
@@ -13,4 +15,16 @@ def home():
 def health_check():
     return {
         "status": "healthy"
+    }
+
+@app.post("/rank-resumes")
+def rank_candidates(request: RankingRequest):
+
+    results = rank_resumes(
+        request.job_description,
+        request.resumes
+    )
+
+    return {
+        "rankings": results
     }
